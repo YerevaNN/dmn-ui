@@ -31,7 +31,7 @@ Returns a list of available models for the specified network
 Returns a vocabulary for the specified model 
 
 ```json
-['John', 'table', 'football', ...]
+["John", "table", "football", ...]
 ```
 
 ## POST /networks/:network/models/:model/_predict
