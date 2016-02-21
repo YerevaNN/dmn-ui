@@ -18,7 +18,7 @@ $ node server/seed-db > server/db.json
 $ node server
 ```
 
-After yo can serve your files. Files will be served under  [http://localhost:3000](http://localhost:3000).
+After that you can serve your files. Files will be served under  [http://localhost:3000](http://localhost:3000).
 
 ```bash
 gulp serve
