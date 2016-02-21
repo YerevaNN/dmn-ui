@@ -1,4 +1,4 @@
-app
+/app
 node_modules/
 bower_components/
 coverage/

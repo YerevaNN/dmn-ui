@@ -1,0 +1,42 @@
+.m-t-m {
+  margin-top 10px
+}
+
+.resize-vertical
+  resize vertical
+
+.highlighted
+  background-color #5bc0de
+
+.form-control.ng-invalid
+  border 1px solid #d9534f
+
+$table-bg-hover ?= #f5f5f5
+$table-bg-accent ?= #f9f9f9
+
+.table-hover
+  overflow hidden
+
+  td, th
+    position relative
+
+    &:hover::after
+      content ""
+      position absolute
+      background-color $table-bg-hover
+      left 0
+      top -5000px
+      height 10000px
+      width 100%
+      z-index -1
+
+.table-x-label
+  float right
+  margin-left 58px
+
+.table-y-label
+  float left
+
+.table-label
+  background url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 10 10'> <path d='M0 0 L0 10 L10 10 ' fill='#cccccc' /></svg>");
+

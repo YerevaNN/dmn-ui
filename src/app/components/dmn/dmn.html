@@ -1,0 +1,122 @@
+<section class="container">
+  <section>
+    <header class="text-center">
+      <h3>Dynamic Memory Networks by
+        <small>YerevanNN</small>
+      </h3>
+
+      <p class="ng-hide">
+        With ♥ thanks to the contributions of
+        <acme-malarkey extra-values="['DMN']"></acme-malarkey>
+      </p>
+    </header>
+
+    <form name="dmnForm" class="row" ng-submit="dmn.predict(dmnForm)">
+      <section class="col-md-4">
+        <header>
+          <h4>Options</h4>
+        </header>
+
+        <div class="form-group">
+          <label for="network">Network</label>
+          <select name="network" id="network" class="form-control" ng-model="dmn.network"
+                  ng-options="network as network.name for network in dmn.networks"
+                  ng-change="dmn.selectNetwork(dmn.network)" ng-disabled="!dmn.networks">
+            <option value="" disabled>Select a network</option>
+          </select>
+
+          <p class="m-t-m" ng-bind="dmn.network.description"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="model">Model</label>
+          <select name="model" id="model" class="form-control" ng-model="dmn.model"
+                  ng-options="model as model.name for model in dmn.models"
+                  ng-change="dmn.selectModel(dmn.model)" ng-disabled="!dmn.network">
+            <option value="" disabled>Select a model for this network</option>
+          </select>
+
+          <p class="m-t-m" ng-bind="dmn.model.description"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="vocab">Vocabulary</label>
+          <textarea name="vocab" id="vocab" cols="30" rows="10" class="form-control" ng-model="dmn.vocabStr"
+                    readonly></textarea>
+        </div>
+      </section>
+      <section class="col-md-4">
+        <header>
+          <h4>Input</h4>
+        </header>
+
+        <div class="form-group">
+          <label for="story">Story</label>
+          <textarea name="story" id="story" cols="20" rows="10" class="form-control resize-vertical" ng-model="dmn.story"
+                    required vocab="dmn.vocabMap" not-in-vocab="dmn.wordsNotInVocab"
+                    ng-disabled="!dmn.model"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="question">Question</label>
+          <input type="text" class="form-control" id="question" ng-model="dmn.question" required
+                 vocab="dmn.vocabMap" not-in-vocab="dmn.wordsNotInVocab"
+                 ng-disabled="!dmn.model">
+        </div>
+
+        <div class="well well-danger" ng-show="dmn.wordsNotInVocab.length">
+          The following words are not from vocabulary: {{ dmn.wordsNotInVocab.join(' ') }}
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit" ng-disabled="dmn.busy || !dmn.model">Predict</button>
+          <button class="btn btn-default" type="button" ng-disabled="!dmn.model" ng-click="dmn.getSample()">Sample</button>
+        </div>
+      </section>
+
+      <section class="col-md-4">
+        <header>
+          <h4>Output</h4>
+        </header>
+
+        <div class="row text-center" ng-show="dmn.busy">
+          <div class="col-md-12">
+            <i class="fa fa-cog fa-spin fa-3x"></i>
+          </div>
+        </div>
+
+        <div class="form-group" ng-show="dmn.prediction">
+          <label>Answer: <strong>{{ dmn.prediction.answer }}</strong></label>
+        </div>
+
+        <div class="form-group" ng-show="dmn.prediction">
+          <label>Confidence: <strong>{{ dmn.prediction.confidence }}</strong></label>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover" ng-show="dmn.prediction.episodes">
+            <thead>
+            <tr>
+              <th class="table-label">
+                <span class="table-x-label">Episode</span>
+                <span class="table-y-label">Fact</span>
+              </th>
+              <th ng-repeat="i in dmn.prediction.episodes track by $index" ng-bind="$index + 1"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="fact in dmn.prediction.facts">
+              <td ng-bind="fact"></td>
+              <td ng-repeat="episode in dmn.prediction.episodes track by $index"
+                  ng-bind="episode[$parent.$index] | currency:'':2"
+                  ng-class="{highlighted: dmn.isMax($index, $parent.$index)}"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </form>
+  </section>
+
+
+</section>
