@@ -48,6 +48,11 @@ server.post('/networks/:network/models/:model/_predict', (req, res) => {
   router.render(req, res);
 });
 
+server.get('/networks/:network/models/:model/samples/_sample', (req, res) => {
+  res.locals.data = router.db.object.samples[Math.floor(Math.random() * router.db.object.samples.length)];
+  router.render(req, res);
+});
+
 server.use(router);
 
 server.listen(3003);

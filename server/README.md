@@ -64,3 +64,15 @@ Explanation:
   ]
 }
 ```
+
+## GET /networks/:network/models/:model/samples/_sample
+
+Returns sample story + question
+
+```json
+{
+  "id": 32,
+  "story": "some story",
+  "question": "some question"
+}
+```
