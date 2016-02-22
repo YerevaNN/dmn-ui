@@ -37,12 +37,21 @@
           </select>
 
           <p class="m-t-m" ng-bind="dmn.model.description"></p>
+
         </div>
 
         <div class="form-group">
           <label for="vocab">Vocabulary</label>
           <textarea name="vocab" id="vocab" cols="30" rows="10" class="form-control" ng-model="dmn.vocabStr"
                     readonly></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="params">Model Hyper Parameters</label>
+          <a class="pull-right" href="" ng-click="dmn.showParams = !dmn.showParams">
+            {{ dmn.showParams ? 'Hide' : 'Show' }}
+          </a>
+          <pre id="params" ng-show="dmn.showParams" ng-bind="dmn.hyperparams | json:4"></pre>
         </div>
       </section>
       <section class="col-md-4">
