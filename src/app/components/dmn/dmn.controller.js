@@ -8,22 +8,24 @@ export class DmnController {
     Networks.getList()
       .then((networks) => {
         this.networks = networks;
+        this.selectNetwork(networks[0]);
       });
   }
 
   selectNetwork(network) {
+    this.network = network;
+
     this.model = this.vocab = this.vocabStr = this.vocabMap = null;
 
     return network.all('models').getList()
       .then((models) => {
         this.models = models;
+        this.selectModel(models[0]);
       });
   }
 
   selectModel(model) {
-    if (!model) {
-      return;
-    }
+    this.model = model;
 
     return this.model.get()
       .then((model) => {
@@ -44,6 +46,10 @@ export class DmnController {
     const factAttention = this.prediction.episodes[episodeIdx][factIdx];
 
     return Math.max.apply(Math, this.prediction.episodes[episodeIdx]) === factAttention;
+  }
+
+  getColor(attention) {
+    return {'background-color': `rgba(0, 192, 247, ${attention})`};
   }
 
   predict(form) {

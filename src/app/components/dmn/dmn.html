@@ -90,7 +90,7 @@
         </div>
 
         <div class="form-group" ng-show="dmn.prediction">
-          <label>Confidence: <strong>{{ dmn.prediction.confidence }}</strong></label>
+          <label>Confidence: <strong>{{ dmn.prediction.confidence * 100 | currency:'':2 }}%</strong></label>
         </div>
 
         <div class="table-responsive">
@@ -105,11 +105,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="fact in dmn.prediction.facts">
+            <tr ng-repeat="fact in dmn.prediction.facts track by $index">
               <td ng-bind="fact"></td>
               <td ng-repeat="episode in dmn.prediction.episodes track by $index"
-                  ng-bind="episode[$parent.$index] | currency:'':2"
-                  ng-class="{highlighted: dmn.isMax($index, $parent.$index)}"></td>
+                  ng-style="dmn.getColor(episode[$parent.$index])" class="text-center">
+                <span ng-bind="episode[$parent.$index] | currency:'':2"></span>
+                <i class="fa fa-check" ng-show="dmn.isMax($index, $parent.$index)"></i>
+              </td>
             </tr>
             </tbody>
           </table>
