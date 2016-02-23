@@ -31,6 +31,8 @@ export class DmnController {
 
     return this.model.get()
       .then((model) => {
+        this.model = model;
+
         this.hyperparams = _.omit(model.plain(), ['name', 'description', 'vocab', 'load_state', 'samples  ']);
 
         this.vocabMap = new Map();
