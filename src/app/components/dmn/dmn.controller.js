@@ -31,9 +31,9 @@ export class DmnController {
 
     return this.model.get()
       .then((model) => {
-        this.model = model;
+        this.modelEx = model;
 
-        this.hyperparams = _.omit(model.plain(), ['name', 'description', 'vocab', 'load_state', 'samples  ']);
+        this.hyperparams = _.omit(model.plain(), ['name', 'description', 'vocab', 'load_state', 'samples']);
 
         this.vocabMap = new Map();
         this.vocab    = model.vocab;
@@ -75,11 +75,11 @@ export class DmnController {
   }
 
   getSample() {
-    if (!this.model.samples) {
+    if (!this.modelEx.samples) {
       return;
     }
 
-    const sample = this.model.samples[Math.floor(Math.random() * this.model.samples.length)];
+    const sample = this.modelEx.samples[Math.floor(Math.random() * this.modelEx.samples.length)];
 
     this.story    = sample.C;
     this.question = sample.Q;
