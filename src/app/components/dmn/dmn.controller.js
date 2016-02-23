@@ -1,6 +1,8 @@
 export class DmnController {
-  constructor(Networks) {
+  constructor($scope, Networks) {
     'ngInject';
+
+    this.$ = $scope;
 
     this.busy            = false;
     this.wordsNotInVocab = [];
@@ -29,7 +31,7 @@ export class DmnController {
 
     return this.model.get()
       .then((model) => {
-        this.hyperparams = _.omit(model.plain(), ['name', 'description', 'vocab', 'load_state']);
+        this.hyperparams = _.omit(model.plain(), ['name', 'description', 'vocab', 'load_state', 'samples  ']);
 
         this.vocabMap = new Map();
         this.vocab    = model.vocab;
@@ -71,10 +73,15 @@ export class DmnController {
   }
 
   getSample() {
-    return this.model.all('samples').customGET('_sample')
-      .then(({story, question}) => {
-        this.story    = story;
-        this.question = question;
-      });
+    if (!this.model.samples) {
+      return;
+    }
+
+    const sample = this.model.samples[Math.floor(Math.random() * this.model.samples.length)];
+
+    this.story    = sample.C;
+    this.question = sample.Q;
+
+    return this.predict(this.$.dmnForm);
   }
 }
