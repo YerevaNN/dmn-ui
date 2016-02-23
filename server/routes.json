@@ -1,5 +1,4 @@
 {
   "/api/v1/": "/",
-  "/networks/:network/models/:model/vocab": "/vocab",
-  "/networks/:network/models/:model/samples": "/samples"
+  "/networks/:network/models/:model/": "/models/:model/"
 }

@@ -1,7 +1,7 @@
 'use strict';
 
-const factsN    = 20;
-const episodesN = 20;
+const factsN    = 10;
+const episodesN = 5;
 
 const jsonServer = require('json-server');
 
@@ -26,6 +26,7 @@ server.post('/networks/:network/models/:model/_predict', (req, res) => {
 
   const prediction = {
     answer: db.vocab[Math.floor(Math.random() * db.vocab.length)],
+    confidence: Math.random(),
     facts: [],
     episodes: []
   };
@@ -48,11 +49,7 @@ server.post('/networks/:network/models/:model/_predict', (req, res) => {
   router.render(req, res);
 });
 
-server.get('/networks/:network/models/:model/samples/_sample', (req, res) => {
-  res.locals.data = router.db.object.samples[Math.floor(Math.random() * router.db.object.samples.length)];
-  router.render(req, res);
-});
 
 server.use(router);
 
-server.listen(3003);
+server.listen(5000);

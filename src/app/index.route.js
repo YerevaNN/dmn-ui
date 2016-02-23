@@ -1,9 +1,9 @@
 export function routerConfig($stateProvider, $urlRouterProvider) {
   'ngInject';
   $stateProvider
-    .state('dmn', {
+    .state('home', {
       url: '/',
-      templateUrl: 'app/components/dmn/dmn.html',
+      templateUrl: 'app/main/main.html',
       controller: 'DmnController',
       controllerAs: 'dmn'
     });

@@ -13,17 +13,10 @@ const db = {
 };
 
 
-for (let i = 0; i < networkN; i++) {
-  db.networks.push({id: i, name: `Network ${i + 1}`});
-
-  for (let j = 0; j < modelN; j++) {
-    db.models.push({id: j, name: `Model ${j + 1} of Network ${i + 1}`, networkId: i});
-  }
-}
-
 for (let i = 0; i < vocabN; i++) {
   db.vocab.push(`word${i}`);
 }
+
 
 function getRandomRange(a, b) {
   a = a || 0;
@@ -64,10 +57,33 @@ function getStory() {
 for (let i = 0; i < samplesN; i++) {
   db.samples.push({
     id: i + 1,
-    story: getStory(),
-    question: getSentence() + '?'
+    C: getStory(),
+    Q: getSentence() + '?'
   });
 }
+
+for (let i = 0; i < networkN; i++) {
+  db.networks.push({id: i, name: `Network ${i + 1}`, description: `Description of Network ${i + 1}`});
+
+  for (let j = 0; j < modelN; j++) {
+    db.models.push({
+      id: j, 
+      name: `Model ${j + 1} of Network ${i + 1}`, 
+      networkId: i, 
+      description: `Description of Network ${i + 1}`,
+      hyper_param1: 1,
+      hyper_param2: 1,
+      hyper_param3: 1,
+      hyper_param4: 1,
+      hyper_param5: 1,
+      hyper_param6: 1,
+      vocab: db.vocab,
+      samples: db.samples
+    });
+  }
+}
+
+
 
 
 console.log(JSON.stringify(db, null, '  '));

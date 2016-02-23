@@ -1,15 +1,30 @@
-<div class="container">
-  <div class="jumbotron text-center">
-    <h1>Dynamic Memory Networks by
-      <small>YerevanNN#</small>
-    </h1>
-    <p>
-      With ♥ thanks to the contributions of
-      <acme-malarkey extra-values="['DNM']"></acme-malarkey>
-    </p>
-  </div>
+<section class="container">
+  <section>
+    <header class="text-center">
+      <h3>Dynamic Memory Networks by
+        <small>YerevanNN</small>
+      </h3>
+      <p>
+        This is a playground to experiment with 
+        <a href="https://github.com/YerevaNN/Dynamic-memory-networks-in-Theano" target="_blank">our implementation</a>
+        of <a href="http://arxiv.org/abs/1506.07285" target="_blank">Dynamic memory networks by Kumar et al.</a> 
+        DMNs are designed to answer questions related to the given stories. 
+        They are trained on datasets of lots of stories and questions. 
+        All available models here are pretrained on Facebook's 
+        <a href="http://fb.ai/babi" target="_blank">bAbI tasks</a>. 
+        The vocabulary is quite limited but it is enough to describe various reasoning tasks.
+        <code>Sample</code> button will load random samples from the bAbI test set. 
+        Read more in our <a href="http://yerevann.github.io/2016/02/23/playground-for-babi-tasks/" target="_blank">blog post</a>.
+      </p>
+      <p class="ng-hide">
+        With ♥ thanks to the contributions of
+        <acme-malarkey extra-values="['DMN']"></acme-malarkey>
+      </p>
+    </header>
 
-  <ui-view name="dmn"></ui-view>
+    <div ng-include="'app/components/dmn/dmn.html'"></div>
+  </section>
+</section>
 
-</div>
-
+<div ng-include="'app/components/footer/footer.html'"></div>
+  

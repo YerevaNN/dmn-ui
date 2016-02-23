@@ -1,6 +1,10 @@
 # UI for Dynamic Memory Networks
 
-Fake server documentation can be found [here](server/README.md).
+This repository contains only Web UI for the Dynamic Memory Networks. 
+
+Implementation of DMN you can found in [YerevaNN/Dynamic-memory-networks-in-Theano](https://github.com/YerevaNN/Dynamic-memory-networks-in-Theano)
+
+Beside of that you can run a fake server which documentation can be found [here](server/README.md).
 
 ## Development
 
