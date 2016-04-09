@@ -8,14 +8,22 @@ Beside of that you can run a fake server which documentation can be found [here]
 
 ## Development
 
-Install npm, bower and gulp if you don't have them. After install all dependencies.
+
+### Dependencies
+In order to run DMN UI you should install Node.js. After that you will need to install bower and gulp.
+```bash
+$ npm install -g bower gulp
+```
+
+Now, if everything was successful you should be able to run the following command to install other dependencies.
 
 ```bash
 $ npm install
 $ bower install
 ```
 
-First, you need to seed DB for the fake API server and run it.
+### Run
+You need to seed DB for the fake API server and run it.
 
 ```bash
 $ node server/seed-db > server/db.json
@@ -30,7 +38,7 @@ gulp serve
 
 ## Build
 
-To build your UI files run:
+If you want to build your files (create production ready version) you should run:
 
 ```bash
 $ gulp build
